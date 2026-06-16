@@ -19,7 +19,7 @@ sequenceDiagram
     MO-->>ST: { rho, L, Wq, Pwait, curve, stable }
     ST->>CH: series=[...], markers=[...], xDomain, yDomain
     CH->>CH: useMemo convierte [[x,y]] → [{x,y}]
-    CH->>RC: &lt;ComposedChart data={[]} /&gt;
+    CH->>RC: "ComposedChart data=[] por serie"
     RC-->>U: Gráfica actualizada en pantalla
 ```
 
