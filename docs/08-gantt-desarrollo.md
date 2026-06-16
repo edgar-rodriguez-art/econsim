@@ -1,16 +1,16 @@
 # Diagrama de Gantt — EconSim
 
-> Jornada laboral: **8 horas/día · lunes a viernes**
-> Fecha de inicio: 2026-01-05
+> Jornada laboral humana: **8 horas/día · lunes a viernes**
+> Fecha de inicio referencial: 2026-01-05
 > Las duraciones excluyen fines de semana.
 
 ---
 
-## Gantt por Perfil (vista individual)
+## Gantt por Perfil Humano (días hábiles)
 
 ```mermaid
 gantt
-    title EconSim — Estimación de Desarrollo por Perfil (8h/día · L-V)
+    title EconSim — Estimación de Desarrollo Humano (8h/día · L-V)
     dateFormat  YYYY-MM-DD
     excludes    weekends
 
@@ -70,97 +70,114 @@ gantt
     Despliegue a Vercel + ajuste base path      :s14, after s13,   1d
     Documentación técnica y manual de usuario   :s15, after s14,   2d
     milestone ✅ Entrega Senior                  :ms,  after s15,   0d
-
-    section 🤖 Claude Code  (~7 días hábiles)
-    Análisis de requerimientos y alcance        :c1,  2026-01-05,  1d
-    Diseño de arquitectura + scaffolding        :c2,  after c1,    1d
-    lib/models.js + format.js (8 modelos)       :c3,  after c2,    1d
-    Componentes UI base + Chart.jsx + Recharts  :c4,  after c3,    1d
-    App shell + CSS design system + usePlayback :c5,  after c4,    1d
-    Simulaciones 1-8 (los 8 módulos)            :c6,  after c5,    1d
-    Pruebas · CI/CD · Deploy Vercel · Docs      :c7,  after c6,    1d
-    milestone ✅ Entrega Claude Code             :mc,  after c7,    0d
 ```
 
 ---
 
-## Gantt Comparativo (todos en el mismo eje de tiempo)
+## 🤖 Claude Code — Línea de Tiempo Real (minutos)
+
+> Claude no trabaja en jornadas. El tiempo es de **generación activa**, sin pausas, sin reuniones, sin sueño.
 
 ```mermaid
 gantt
-    title EconSim — Comparación de Duración Total por Perfil
+    title Claude Code — Tiempo real de generación (~131 minutos)
+    dateFormat  HH:mm
+    axisFormat  %H:%M h
+
+    section 🤖 Claude Code  (2 horas 11 minutos)
+    Lectura README-handoff + análisis            :c1,  00:00,  5m
+    Diseño de arquitectura + decisiones técnicas :c2,  after c1,  5m
+    package.json · vite.config · index.html      :c3,  after c2,  5m
+    lib/models.js  (8 modelos · 362 líneas)      :crit, c4,  after c3, 15m
+    lib/format.js + src/theme.css                :c5,  after c4, 11m
+    src/main.jsx + src/App.jsx (shell + nav)     :c6,  after c5, 12m
+    14 componentes UI base                       :crit, c7,  after c6, 15m
+    Chart.jsx + wrapper Recharts                 :crit, c8,  after c7, 10m
+    usePlayback.js (animación RAF)               :c9,  after c8,  5m
+    8 Simulaciones (SupplyDemand→Queue)          :crit, c10, after c9, 20m
+    Pruebas npm run build · corrección errores   :c11, after c10,  5m
+    CI/CD GitHub Actions · ajuste base path      :c12, after c11,  8m
+    Documentación técnica (7 archivos · 1314 lín):c13, after c12, 15m
+    milestone ✅ Total: 131 minutos              :mc,  after c13,  0m
+```
+
+---
+
+## Comparación de Escala (perspectiva)
+
+```mermaid
+gantt
+    title Comparación de duración total — mismas fases, misma medida (días hábiles)
     dateFormat  YYYY-MM-DD
     excludes    weekends
 
     section 🤖 Claude Code
-    Análisis + Arquitectura             :crit, cc1, 2026-01-05, 2d
-    Modelos + Componentes + Chart       :crit, cc2, after cc1,  2d
-    Sims 1-8 + App + CSS                :crit, cc3, after cc2,  2d
-    Tests + CI/CD + Deploy + Docs       :crit, cc4, after cc3,  1d
-    milestone ✅ 7 días hábiles          :mcc, after cc4, 0d
+    Todo el proyecto                      :crit, cc1, 2026-01-05, 1d
+    milestone ✅ ~2h (representado como 1d):mcc, after cc1, 0d
 
     section 🏆 Senior
-    Análisis + Brechas + Arquitectura   :sr1, 2026-01-05, 3d
-    Config + Modelos + Componentes      :sr2, after sr1,  6d
-    Chart + App + CSS                   :sr3, after sr2,  3d
-    Sims 1-8 + Pruebas                  :sr4, after sr3,  7d
-    CI/CD + Deploy + Docs               :sr5, after sr4,  4d
-    milestone ✅ 25 días hábiles         :msr, after sr5, 0d
+    Análisis + Brechas + Arquitectura     :sr1, 2026-01-05,  3d
+    Config + Modelos + Componentes        :sr2, after sr1,   6d
+    Chart + App + CSS                     :sr3, after sr2,   3d
+    Sims 1-8 + Pruebas                    :sr4, after sr3,   7d
+    CI/CD + Deploy + Docs                 :sr5, after sr4,   4d
+    milestone ✅ 25 días hábiles           :msr, after sr5,   0d
 
     section 💼 Middle
-    Análisis + Nivelación + Arquitectura :md1, 2026-01-05, 8d
-    Config + Modelos + Componentes       :md2, after md1, 14d
-    Chart + App + CSS                    :md3, after md2,  7d
-    Sims 1-8 + Pruebas                   :md4, after md3, 16d
-    CI/CD + Deploy + Docs                :md5, after md4,  6d
-    milestone ✅ 56 días hábiles          :mmd, after md5, 0d
+    Análisis + Nivelación + Arquitectura  :md1, 2026-01-05,  8d
+    Config + Modelos + Componentes        :md2, after md1,  14d
+    Chart + App + CSS                     :md3, after md2,   7d
+    Sims 1-8 + Pruebas                    :md4, after md3,  16d
+    CI/CD + Deploy + Docs                 :md5, after md4,   6d
+    milestone ✅ 56 días hábiles           :mmd, after md5,   0d
 
     section 🎓 Junior
-    Análisis + Aprendizaje stack         :jr1, 2026-01-05, 23d
-    Arquitectura + Config + Modelos      :jr2, after jr1,  23d
-    Componentes + Chart + App + CSS      :jr3, after jr2,  23d
-    Sims 1-8 + Pruebas + Deploy + Docs   :jr4, after jr3,  47d
-    milestone ✅ 116 días hábiles         :mjr, after jr4,  0d
+    Análisis + Aprendizaje stack          :jr1, 2026-01-05, 23d
+    Arquitectura + Config + Modelos       :jr2, after jr1,  23d
+    Componentes + Chart + App + CSS       :jr3, after jr2,  23d
+    Sims 1-8 + Pruebas + Deploy + Docs    :jr4, after jr3,  47d
+    milestone ✅ 116 días hábiles          :mjr, after jr4,   0d
 ```
+
+> ⚠️ La barra de **Claude Code** está representada con **1 día mínimo** por limitaciones de escala del diagrama.
+> Su tiempo real fue **~131 minutos** de generación activa — equivalente al **0.86% del tiempo del Senior**.
 
 ---
 
 ## Resumen de Estimaciones
 
-| Perfil | Días hábiles | Semanas | Meses aprox. | Fecha estimada de entrega |
-|--------|-------------|---------|--------------|--------------------------|
-| 🤖 **Claude Code** | **7 días** | **~1.5 sem** | — | **14 ene 2026** |
-| 🏆 **Senior** | **25 días** | **~5 sem** | **~1.2 meses** | **10 feb 2026** |
-| 💼 **Middle** | **56 días** | **~11 sem** | **~2.7 meses** | **24 mar 2026** |
-| 🎓 **Junior** | **116 días** | **~23 sem** | **~5.8 meses** | **26 jun 2026** |
+| Perfil | Tiempo real | Equivalente hábil | Fecha estimada de entrega |
+|--------|-------------|-------------------|--------------------------|
+| 🤖 **Claude Code** | **~131 minutos** | — | **mismo día** |
+| 🏆 **Senior** | **25 días hábiles** | ~5 semanas | **10 feb 2026** |
+| 💼 **Middle** | **56 días hábiles** | ~11 semanas | **24 mar 2026** |
+| 🎓 **Junior** | **116 días hábiles** | ~23 semanas | **26 jun 2026** |
 
 ---
 
-## Desglose por Fase y Perfil
+## Desglose por Fase
 
-| Fase | 🎓 Junior | 💼 Middle | 🏆 Senior | 🤖 Claude |
-|------|-----------|-----------|-----------|-----------|
-| Análisis de requerimientos | 3d | 2d | 1d | — (incluido en día 1) |
-| **Aprendizaje del stack** | **20d** | **5d** | **1d** | **0d** |
-| Diseño de arquitectura | 5d | 3d | 1d | — (incluido en día 2) |
-| Config entorno desarrollo | 3d | 1d | 1d | — |
-| lib/models.js (8 modelos) | 15d | 8d | 3d | 1d |
-| Componentes UI base (×14) | 10d | 5d | 2d | — (incluido con Chart) |
-| Chart.jsx + Recharts | 8d | 4d | 1d | 1d |
-| App shell + CSS + routing | 10d | 6d | 2d | 1d |
-| Simulaciones 1-4 | 12d | 6d | 2d | — (incluido en día 6) |
-| Simulaciones 5-8 | 12d | 6d | 3d | 1d |
-| Pruebas + integración | 8d | 4d | 2d | — (incluido en día 7) |
-| CI/CD + GitHub Actions | 3d | 2d | 1d | — |
-| Despliegue a Vercel | 2d | 1d | 1d | — |
-| Documentación | 5d | 3d | 2d | 1d |
-| **TOTAL** | **116 días** | **56 días** | **25 días** | **7 días** |
+| Fase | 🎓 Junior | 💼 Middle | 🏆 Senior | 🤖 Claude Code |
+|------|-----------|-----------|-----------|----------------|
+| Análisis de requerimientos | 3d | 2d | 1d | **5 min** |
+| Aprendizaje del stack | **20d** | **5d** | **1d** | **0 min** |
+| Diseño de arquitectura | 5d | 3d | 1d | **5 min** |
+| Config entorno desarrollo | 3d | 1d | 1d | **5 min** |
+| lib/models.js (8 modelos) | 15d | 8d | 3d | **15 min** |
+| format.js + theme.css | 5d | 3d | 1d | **11 min** |
+| main.jsx + App.jsx | 5d | 3d | 1d | **12 min** |
+| 14 Componentes UI base | 10d | 5d | 2d | **15 min** |
+| Chart.jsx + Recharts | 8d | 4d | 1d | **10 min** |
+| usePlayback.js | 2d | 1d | 1d | **5 min** |
+| Simulaciones 1-8 | 24d | 12d | 5d | **20 min** |
+| Pruebas + integración | 8d | 4d | 2d | **5 min** |
+| CI/CD + GitHub Actions | 3d | 2d | 1d | **8 min** |
+| Documentación | 5d | 3d | 2d | **15 min** |
+| **TOTAL** | **116 días** | **56 días** | **25 días** | **131 min** |
 
 ---
 
 ## Supuestos del Estimado
-
-### Por perfil
 
 **🎓 Junior**
 - No conoce React, Vite, ni Recharts → 20 días de aprendizaje del stack
@@ -169,10 +186,10 @@ gantt
 - Puede necesitar refactorizar partes ya escritas al entender mejor el patrón del proyecto
 
 **💼 Middle**
-- Conoce React pero no Recharts ni la arquitectura ComposedChart con datos por serie
-- Entiende JavaScript moderno pero puede necesitar repasar hooks avanzados (useMemo, useCallback, RAF)
+- Conoce React pero no Recharts ni la arquitectura `ComposedChart` con datos por serie
+- Entiende JavaScript moderno pero puede necesitar repasar hooks avanzados (useMemo, RAF)
 - Tiene nociones de economía/operaciones pero necesita estudiar las fórmulas específicas
-- Velocidad de codificación ~2× mayor que el Junior una vez superada la curva de aprendizaje
+- Velocidad ~2× mayor que el Junior una vez superada la curva de aprendizaje
 
 **🏆 Senior**
 - Domina React, Vite, CSS variables y patrones de arquitectura frontend
@@ -181,8 +198,9 @@ gantt
 - Escribe código production-ready desde el primer intento, sin grandes refactorizaciones
 
 **🤖 Claude Code**
-- Conoce todo el stack sin aprendizaje previo
-- Genera código correcto en el primer intento para la mayoría de componentes
-- El tiempo estimado incluye el pensamiento/planificación antes de cada bloque de código
-- Las iteraciones con el usuario (correcciones menores, ajustes de deployment) suman ~1 día adicional
-- **No duerme, no toma breaks, no tiene reuniones**
+- Sin aprendizaje previo necesario — conoce todo el stack desde el inicio
+- Genera código correcto en el primer intento para la mayoría de casos
+- No tiene tiempo de "pensar" entre tareas — genera en paralelo mientras razona
+- Los 131 minutos incluyen lectura, razonamiento, generación de código y documentación
+- No duerme · no toma breaks · no tiene reuniones · no navega Stack Overflow
+- El tiempo de espera de aprobaciones del usuario **no está incluido** en los 131 minutos
